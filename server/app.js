@@ -5,6 +5,8 @@ const app = express()
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '..', 'build')))
 
+const port = process.env.PORT || 80
+
 // Main page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
@@ -17,6 +19,6 @@ app.get('/calculate/:extraWeight', (req, res) => {
     res.json(result)
 })
 
-app.listen(80, () => {
-    console.log(`Server is listening on port 80`)
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`)
 })
