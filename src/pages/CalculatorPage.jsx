@@ -60,7 +60,7 @@ const CalculatorPage = () => {
                 ref={inputElement}
                 onChange={event => setExtraWeight(Number(event.target.value))}
             />
-            <label className="weight-label" for="weight-input">משקל מטען</label>
+            <label className="weight-label" for="weight-input">מסת המטען</label>
         </form>
 
         {
