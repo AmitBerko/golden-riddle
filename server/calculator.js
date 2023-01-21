@@ -10,6 +10,12 @@ function calculate(extraMass) {
     /* 
         This function gets the "extraMass" parameter and returns the
         distance the plane had traveled and the time passed until it took off
+
+        Note: The function also returns a "status" variable which is used to determine
+        the message the user will see.
+        "success" will tell the user the take-off time and distance.
+        "slow" will tell the user how many kilograms the plane should remove.
+        "error" will tell the user that the input must be a number
     */
     if (extraMass < 0) 
         return { status: 'error' }
