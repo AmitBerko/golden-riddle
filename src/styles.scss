@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+$background-color: rgb(25, 25, 25);
+$input-border-color: rgb(55, 125, 255);
+$button-border-color: #2c9caf;
+
+* {
+    font-family: 'Rubik', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    background-color: $background-color;
+    margin: 0;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button, // Remove the arrows from the input element
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    width: 45vw;
+    height: 55vh;
+    border: 3px solid rgb(50, 50, 50);
+    border-radius: 10px;
+    margin: 0;
+    padding: 30px;
+    padding-top: 34px;
+}
+
+.title {
+    font-size: 6rem;
+}
+
+.input-group {
+    padding: 0;
+    position: relative;
+    display: flex;
+    margin-bottom: 3.5rem;
+}
+
+.weight-input {
+    position: relative;
+    border: solid 3px $input-border-color;
+    border-radius: 1rem;
+    background: none;
+    padding: 1.3rem;
+    font-size: 4rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 35vw;
+
+    &:focus {
+        outline: none;
+        border-color: $input-border-color;
+        transition: 1.2s;
+    }
+
+    &:focus~label {
+        transform: translateY(-50%) scale(0.8);
+        background-color: $background-color;
+        padding: 0 0.2em;
+        color: $input-border-color;
+    }
+
+    &.not-empty {
+        border-color: $input-border-color;
+    }
+
+}
+
+.weight-label {
+    text-decoration: none;
+    position: absolute;
+    font-weight: 500;
+    font-size: 2.5rem;
+    right: 30px;
+    color: rgb(158, 158, 158);
+    pointer-events: none;
+    transform: translateY(2.3rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.not-empty {
+        transform: translateY(-50%) scale(0.8);
+        background-color: $background-color;
+        padding: 0 0.2em;
+        transition: 0.5s;
+        color: $input-border-color;
+    }
+}
+
+.submit-button {
+    cursor: pointer;
+    padding: 15px 25px;
+    border: solid 3px $input-border-color;
+    border-radius: 15px;
+    color: white;
+    z-index: 1;
+    background: $background-color;
+    position: relative;
+    font-weight: 1000;
+    font-size: 2.3rem;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background-color: rgb(68, 119, 213);
+        z-index: -1;
+        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        transition: all 300ms
+    }
+
+    &:hover::before {
+        width: 100%;
+    }
+
+    &:active {
+        transform: scale(0.95);
+        transition: all 50ms linear;
+    }
+}
+
+.result-message {
+    font-size: 35px;
+    margin: 0;
+}
+
+
