@@ -19,6 +19,7 @@ const Weather = ({setMessage}) => {
     useEffect(() => {
         // Getting the temperature data everytime the date input changes
         async function fetchWeatherData() {
+            if (date) // Preventing an error if the date is empty
             try {
                 const response = await axios.get(url, {
                     params: {
