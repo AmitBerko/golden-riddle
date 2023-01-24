@@ -1,5 +1,6 @@
-import { React, useState, useMemo, useRef, useEffect } from 'react'
+import { React, useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import Weather from '../Components/Weather'
 import '../styles.scss'
 
 const CalculatorPage = () => {
@@ -7,12 +8,33 @@ const CalculatorPage = () => {
     const [extraWeight, setExtraWeight] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [result, setResult] = useState({})
+    const [message, setMessage] = useState('')
     const inputElement = useRef()
     const labelElement = useRef()
 
     useEffect(() => {
         inputElement.current.addEventListener('input', handleInput);
     }, []);
+
+    useEffect(() => {
+        // Setting the message everytime the result changes
+        setMessage(getMessage())
+    }, [result])
+
+    function getMessage() {
+        /*
+            The function returns the message to be displayed 
+            on the calculator page depending on the status
+        */
+        switch (result.status) {
+            case 'success':
+                return `מרחק ההמראה הוא ${result.takeOffDistance} מטרים, וזמן ההמראה הוא ${result.takeOffTime} שניות`
+            case 'slow':
+                return `עם המשקל הנוכחי לא תספיקו להמריא בפחות מ60 שניות, תצטרכו להיפטר מ${result.weightToLose} קילוגרמים`
+            case 'error':
+                return 'שגיאה, וודאו שהקלט שהוכנס הינו מספר אי שלילי'
+        }
+    }
 
     function handleInput(event) {
         // This function is for the css
@@ -27,24 +49,6 @@ const CalculatorPage = () => {
         }
     }
 
-    function getMessage() {
-        /*
-            The function returns the message to be displayed 
-            on the calculator page depending on the status
-        */
-
-        switch (result.status) {
-            case 'success':
-                return `מרחק ההמראה הוא ${result.takeOffDistance} מטרים, וזמן ההמראה הוא ${result.takeOffTime} שניות`
-            case 'slow':
-                return `עם המשקל הנוכחי לא תספיקו להמריא בפחות מ60 שניות, תצטרכו להיפטר מ${result.weightToLose} קילוגרמים`
-            case 'error':
-                return 'שגיאה, וודאו שהקלט שהוכנס הינו מספר אי שלילי'
-        }
-    }
-
-    // Using the useMemo hook so the getMessage function won't run after every change in the textbox
-    let message = useMemo(() => getMessage(), [result])
 
     async function handleSubmit(event) {
         /*
@@ -54,7 +58,7 @@ const CalculatorPage = () => {
             Note: I used the isLoading variable to prevent cases where the
             API will get a request before the last one was done
         */
-        event.preventDefault()
+        event.preventDefault() // Preventing the form from default, so it won't refresh the page
         if (isLoading || inputElement.current.value == '' || inputElement.current.value < 0) return
         setIsLoading(true)
         try {
@@ -88,13 +92,14 @@ const CalculatorPage = () => {
                 </div>
                 <button className="submit-button" type="submit">חשב</button>
             </form>
-
             {
-                result &&
+                result && // Don't display the message if result is undefined
                 <p className="result-message">
                     {message} {/* Displaying the message on the calculator page */}
                 </p>
             }
+            {/* Sending the setMessage function through the props */}
+            <Weather setMessage={setMessage}/>
         </div>
         </>
     )
