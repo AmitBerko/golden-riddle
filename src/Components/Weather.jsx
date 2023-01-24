@@ -7,8 +7,14 @@ const Weather = ({setMessage}) => {
     const [date, setDate] = useState('2023-01-01')
     const url = 'https://api.open-meteo.com/v1/forecast'
 
+    // Used to limit the date picker, because the forecast is only 1 week from today
+    let today = new Date()
+    let oneWeekFromToday = new Date()
+    oneWeekFromToday.setDate(today.getDate() + 7)
+    oneWeekFromToday = oneWeekFromToday.toISOString().slice(0,10) // Formatting it to YYYY-MM-DD
+
     // Used to round the average temperature so it will be easier to read
-    const round = (num) => Math.floor(num * 100) / 100;
+    const round = (num) => Math.floor(num * 100) / 100
 
     useEffect(() => {
         // Getting the temperature data everytime the date input changes
@@ -82,6 +88,7 @@ const Weather = ({setMessage}) => {
             <input 
                 class="date-picker"
                 type="date"
+                max={oneWeekFromToday} // Doing it to prevent errors with the api
                 value={date}
                 onChange={event => setDate(event.target.value)}
             />
