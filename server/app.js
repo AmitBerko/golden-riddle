@@ -5,7 +5,7 @@ const app = express()
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '..', 'build')))
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8060
 
 // Main page
 app.get('/', (req, res) => {
@@ -20,5 +20,5 @@ app.get('/calculate/:extraWeight', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`)
+    console.log(`Server is listening on localhost:${port}`)
 })
