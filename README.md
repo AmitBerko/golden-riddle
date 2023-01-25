@@ -6,7 +6,9 @@
 
 ניתן לבנות את תמונת ה־Docker ולהריץ את ה־container באמצעות הפקודה:
 
-```docker-compose up -d --build```
+``docker-compose up -d --build``
+
+לאחר שההתקנה הסתיימה ניתן להיכנס אל `localhost:8060`
 
 ## שלב 1 - לוגיקה עסקית
 
