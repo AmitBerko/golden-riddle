@@ -6,7 +6,7 @@
 
 ראשית, עלינו להוריד את הפרויקט באמצעות הפקודה:
 
-``git clone <https://github.com/AmitBerko/golden-riddle>``
+``git clone https://github.com/AmitBerko/golden-riddle``
 
 ולאחר מכן להיכנס לDirectory עם הפקודה:
 
