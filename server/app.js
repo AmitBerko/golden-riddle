@@ -12,10 +12,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
 })
 
-// Calculation API
+// Calculation Server
 app.get('/calculate/:extraWeight', (req, res) => {
     const extraWeight = Number(req.params.extraWeight)
-    const result = calculate(extraWeight)
+    const result = calculate(extraWeight) // Using the calculate function
     res.json(result)
 })
 
