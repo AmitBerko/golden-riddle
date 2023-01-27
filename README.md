@@ -4,9 +4,17 @@
 
 ## הוראות הפעלה
 
-ניתן לבנות את תמונת ה־Docker ולהריץ את ה־container באמצעות הפקודה:
+ראשית, עלינו להוריד את הפרויקט באמצעות הפקודה:
 
-``docker-compose up -d --build``
+``git clone <https://github.com/AmitBerko/golden-riddle>``
+
+ולאחר מכן להיכנס לDirectory עם הפקודה:
+
+``cd golden-riddle``
+
+כדי לבנות את תמונת ה־Docker ולהריץ את הcontainer יש לבצע את הפקודה הבאה:
+
+``docker-compose up``
 
 לאחר שההתקנה הסתיימה ניתן להיכנס אל `localhost:8060`
 
